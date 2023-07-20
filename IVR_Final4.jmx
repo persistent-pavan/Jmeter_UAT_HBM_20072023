@@ -1,0 +1,1158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.5">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="P_IVRThinkTime" elementType="Argument">
+            <stringProp name="Argument.name">P_IVRThinkTime</stringProp>
+            <stringProp name="Argument.value">20000</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
+        <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+          <collectionProp name="Arguments.arguments"/>
+        </elementProp>
+        <stringProp name="HTTPSampler.domain"></stringProp>
+        <stringProp name="HTTPSampler.port"></stringProp>
+        <stringProp name="HTTPSampler.protocol">https</stringProp>
+        <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+        <stringProp name="HTTPSampler.path"></stringProp>
+        <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+        <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+        <stringProp name="HTTPSampler.response_timeout"></stringProp>
+      </ConfigTestElement>
+      <hashTree/>
+      <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
+        <collectionProp name="CookieManager.cookies"/>
+        <boolProp name="CookieManager.clearEachIteration">true</boolProp>
+        <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
+      </CookieManager>
+      <hashTree/>
+      <CacheManager guiclass="CacheManagerGui" testclass="CacheManager" testname="HTTP Cache Manager" enabled="true">
+        <boolProp name="clearEachIteration">false</boolProp>
+        <boolProp name="useExpires">true</boolProp>
+        <boolProp name="CacheManager.controlledByThread">false</boolProp>
+      </CacheManager>
+      <hashTree/>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+        <stringProp name="delimiter">,</stringProp>
+        <stringProp name="fileEncoding"></stringProp>
+        <stringProp name="filename">C:/PerformanceTesting/Scripts/Scripts/IVR/IVR.csv</stringProp>
+        <boolProp name="ignoreFirstLine">true</boolProp>
+        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="variableNames">P_MemberId,P_AccountNo,P_toAccount</stringProp>
+      </CSVDataSet>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="IVR APIs" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">8</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">25</stringProp>
+        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+        <stringProp name="ThreadGroup.duration">3600</stringProp>
+        <stringProp name="ThreadGroup.delay">5</stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="User Parameters" enabled="true">
+          <collectionProp name="UserParameters.names">
+            <stringProp name="2122698">Data</stringProp>
+            <stringProp name="65803687">Data1</stringProp>
+          </collectionProp>
+          <collectionProp name="UserParameters.thread_values">
+            <collectionProp name="-1748758510">
+              <stringProp name="1565561538">${__Random(1111,9999,)}</stringProp>
+              <stringProp name="-151978596">${__time(MMdd,)}</stringProp>
+            </collectionProp>
+          </collectionProp>
+          <boolProp name="UserParameters.per_iteration">true</boolProp>
+        </UserParameters>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Add Bill" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;soap:Envelope xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;soap:Body&gt;&lt;inquire xmlns=&quot;http://www.cgi.com/ivr&quot;&gt;&amp;lt;InquireRequest xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&amp;gt;&amp;lt;RegionID&amp;gt;${P_RegionID}&amp;lt;/RegionID&amp;gt;&amp;lt;CreditUnionNo&amp;gt;0006&amp;lt;/CreditUnionNo&amp;gt;&amp;lt;BranchNo&amp;gt;01&amp;lt;/BranchNo&amp;gt;&amp;lt;TellerNo&amp;gt;900&amp;lt;/TellerNo&amp;gt;&amp;lt;TellerID&amp;gt;Z&amp;lt;/TellerID&amp;gt;&amp;lt;FunctionType&amp;gt;IVR&amp;lt;/FunctionType&amp;gt;&amp;lt;ApplicationType&amp;gt;X&amp;lt;/ApplicationType&amp;gt;&amp;lt;TransactionCode&amp;gt;UBL&amp;lt;/TransactionCode&amp;gt;&amp;lt;AccountNumber&amp;gt;${P_AccountNo}&amp;lt;/AccountNumber&amp;gt;&amp;lt;PAN&amp;gt;${P_MemberId}&amp;lt;/PAN&amp;gt;&amp;lt;Data&amp;gt;00863000000000000${Data1}${Data}&amp;lt;/Data&amp;gt;&amp;lt;/InquireRequest&amp;gt;&lt;/inquire&gt;&lt;/soap:Body&gt;&lt;/soap:Envelope&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">np-api.leaguedata.ca</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/uat/ivr-eapi/v1/IVRService/IVRPort</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/xml</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">client_id</stringProp>
+                <stringProp name="Header.value">1a6f3cfcc34147e69de499c2a2469d97</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">client_secret</stringProp>
+                <stringProp name="Header.value">8F36377F302343ABB89e30c4BE306a67</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="RegionID" elementType="Argument">
+                <stringProp name="Argument.name">RegionID</stringProp>
+                <stringProp name="Argument.value">${__time(,)}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </Arguments>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">int P_RegionID1=${__Random(10001,99999,)};
+
+String P_RegionID= Integer.toString(P_RegionID1);
+
+//String s=Integer.toString(i);
+
+vars.put(&quot;P_RegionID&quot;,P_RegionID);
+
+
+//log.info(&quot;timestamp value is &quot;+P_RegionID);</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">var api=&quot;Add Bill&quot;;
+
+long starttime=prev.getStartTime();
+
+long endtime=prev.getEndTime();
+
+int loadtime=endtime-starttime;
+
+String P_RegionID=vars.get(&quot;P_RegionID&quot;);
+
+vars.put(&quot;P_RegionID&quot;,P_RegionID);
+
+log.info(&quot;loadtime value is &quot;+loadtime);
+
+
+if(loadtime&gt;1000)
+{
+ FileWriter fstream = new FileWriter(&quot;IVR.csv&quot;, true);
+ BufferedWriter out = new BufferedWriter(fstream);
+ out.write(P_RegionID);
+ out.write(&quot;,&quot;);
+ out.write(api);
+ out.write(&quot;,&quot;);
+  String loadtime1= Integer.toString(loadtime);
+ out.write(loadtime1);
+ out.write(System.getProperty(&quot;line.separator&quot;));
+ out.close();
+ fstream.close();
+
+}</stringProp>
+          </BeanShellPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+          <intProp name="ActionProcessor.action">1</intProp>
+          <intProp name="ActionProcessor.target">0</intProp>
+          <stringProp name="ActionProcessor.duration">${P_IVRThinkTime}</stringProp>
+        </TestAction>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pay Bill" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;soap:Envelope xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;soap:Body&gt;&lt;inquire xmlns=&quot;http://www.cgi.com/ivr&quot;&gt;&amp;lt;InquireRequest xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&amp;gt;&amp;lt;RegionID&amp;gt;${P_RegionID}&amp;lt;/RegionID&amp;gt;&amp;lt;CreditUnionNo&amp;gt;0006&amp;lt;/CreditUnionNo&amp;gt;&amp;lt;BranchNo&amp;gt;01&amp;lt;/BranchNo&amp;gt;&amp;lt;TellerNo&amp;gt;900&amp;lt;/TellerNo&amp;gt;&amp;lt;TellerID&amp;gt;Z&amp;lt;/TellerID&amp;gt;&amp;lt;FunctionType&amp;gt;IVR&amp;lt;/FunctionType&amp;gt;&amp;lt;ApplicationType&amp;gt;X&amp;lt;/ApplicationType&amp;gt;&amp;lt;TransactionCode&amp;gt;TBL&amp;lt;/TransactionCode&amp;gt;&amp;lt;AccountNumber&amp;gt;${P_AccountNo}&amp;lt;/AccountNumber&amp;gt;&amp;lt;PAN&amp;gt;${P_MemberId}&amp;lt;/PAN&amp;gt;&amp;lt;Data&amp;gt;0000000199000000000000${Data1}${Data}&amp;lt;/Data&amp;gt;&amp;lt;/InquireRequest&amp;gt;&lt;/inquire&gt;&lt;/soap:Body&gt;&lt;/soap:Envelope&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">np-api.leaguedata.ca</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/uat/ivr-eapi/v1/IVRService/IVRPort</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/xml</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">client_id</stringProp>
+                <stringProp name="Header.value">1a6f3cfcc34147e69de499c2a2469d97</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">client_secret</stringProp>
+                <stringProp name="Header.value">8F36377F302343ABB89e30c4BE306a67</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="RegionID" elementType="Argument">
+                <stringProp name="Argument.name">RegionID</stringProp>
+                <stringProp name="Argument.value">${__time(,)}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </Arguments>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">int P_RegionID1=${__Random(10001,99999,)};
+
+String P_RegionID= Integer.toString(P_RegionID1);
+
+//String s=Integer.toString(i);
+
+vars.put(&quot;P_RegionID&quot;,P_RegionID);
+
+
+//log.info(&quot;timestamp value is &quot;+P_RegionID);</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">var api=&quot;Pay Bill&quot;;
+
+long starttime=prev.getStartTime();
+
+long endtime=prev.getEndTime();
+
+int loadtime=endtime-starttime;
+
+String P_RegionID=vars.get(&quot;P_RegionID&quot;);
+
+vars.put(&quot;P_RegionID&quot;,P_RegionID);
+
+log.info(&quot;loadtime value is &quot;+loadtime);
+
+
+if(loadtime&gt;1000)
+{
+ FileWriter fstream = new FileWriter(&quot;IVR.csv&quot;, true);
+ BufferedWriter out = new BufferedWriter(fstream);
+ out.write(P_RegionID);
+ out.write(&quot;,&quot;);
+ out.write(api);
+  out.write(&quot;,&quot;);
+   String loadtime1= Integer.toString(loadtime);
+ out.write(loadtime1);
+ out.write(System.getProperty(&quot;line.separator&quot;));
+ out.close();
+ fstream.close();
+
+}</stringProp>
+          </BeanShellPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+          <intProp name="ActionProcessor.action">1</intProp>
+          <intProp name="ActionProcessor.target">0</intProp>
+          <stringProp name="ActionProcessor.duration">${P_IVRThinkTime}</stringProp>
+        </TestAction>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Reverse Pay Bill" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;soap:Envelope xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;soap:Body&gt;&lt;inquire xmlns=&quot;http://www.cgi.com/ivr&quot;&gt;&amp;lt;InquireRequest xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&amp;gt;&amp;lt;RegionID&amp;gt;${P_RegionID}&amp;lt;/RegionID&amp;gt;&amp;lt;CreditUnionNo&amp;gt;0006&amp;lt;/CreditUnionNo&amp;gt;&amp;lt;BranchNo&amp;gt;01&amp;lt;/BranchNo&amp;gt;&amp;lt;TellerNo&amp;gt;900&amp;lt;/TellerNo&amp;gt;&amp;lt;TellerID&amp;gt;Z&amp;lt;/TellerID&amp;gt;&amp;lt;FunctionType&amp;gt;IVR&amp;lt;/FunctionType&amp;gt;&amp;lt;ApplicationType&amp;gt;X&amp;lt;/ApplicationType&amp;gt;&amp;lt;TransactionCode&amp;gt;RBL&amp;lt;/TransactionCode&amp;gt;&amp;lt;AccountNumber&amp;gt;${P_AccountNo}&amp;lt;/AccountNumber&amp;gt;&amp;lt;PAN&amp;gt;${P_MemberId}&amp;lt;/PAN&amp;gt;&amp;lt;Data&amp;gt;0000000199000000000000${Data1}${Data}&amp;lt;/Data&amp;gt;&amp;lt;/InquireRequest&amp;gt;&lt;/inquire&gt;&lt;/soap:Body&gt;&lt;/soap:Envelope&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">np-api.leaguedata.ca</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/uat/ivr-eapi/v1/IVRService/IVRPort</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/xml</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">client_id</stringProp>
+                <stringProp name="Header.value">1a6f3cfcc34147e69de499c2a2469d97</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">client_secret</stringProp>
+                <stringProp name="Header.value">8F36377F302343ABB89e30c4BE306a67</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="RegionID" elementType="Argument">
+                <stringProp name="Argument.name">RegionID</stringProp>
+                <stringProp name="Argument.value">${__time(,)}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </Arguments>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">int P_RegionID1=${__Random(10001,99999,)};
+
+String P_RegionID= Integer.toString(P_RegionID1);
+
+//String s=Integer.toString(i);
+
+vars.put(&quot;P_RegionID&quot;,P_RegionID);
+
+
+//log.info(&quot;timestamp value is &quot;+P_RegionID);</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">var api=&quot;Reverse Pay Bill&quot;;
+
+long starttime=prev.getStartTime();
+
+long endtime=prev.getEndTime();
+
+int loadtime=endtime-starttime;
+
+String P_RegionID=vars.get(&quot;P_RegionID&quot;);
+
+vars.put(&quot;P_RegionID&quot;,P_RegionID);
+
+log.info(&quot;loadtime value is &quot;+loadtime);
+
+
+if(loadtime&gt;1000)
+{
+ FileWriter fstream = new FileWriter(&quot;IVR.csv&quot;, true);
+ BufferedWriter out = new BufferedWriter(fstream);
+ out.write(P_RegionID);
+ out.write(&quot;,&quot;);
+ out.write(api);
+  out.write(&quot;,&quot;);
+   String loadtime1= Integer.toString(loadtime);
+ out.write(loadtime1);
+ out.write(System.getProperty(&quot;line.separator&quot;));
+ out.close();
+ fstream.close();
+
+}</stringProp>
+          </BeanShellPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+          <intProp name="ActionProcessor.action">1</intProp>
+          <intProp name="ActionProcessor.target">0</intProp>
+          <stringProp name="ActionProcessor.duration">${P_IVRThinkTime}</stringProp>
+        </TestAction>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Search Bill" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;soap:Envelope xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;soap:Body&gt;&lt;inquire xmlns=&quot;http://www.cgi.com/ivr&quot;&gt;&amp;lt;InquireRequest xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&amp;gt;&amp;lt;RegionID&amp;gt;${P_RegionID}&amp;lt;/RegionID&amp;gt;&amp;lt;CreditUnionNo&amp;gt;0006&amp;lt;/CreditUnionNo&amp;gt;&amp;lt;BranchNo&amp;gt;01&amp;lt;/BranchNo&amp;gt;&amp;lt;TellerNo&amp;gt;900&amp;lt;/TellerNo&amp;gt;&amp;lt;TellerID&amp;gt;Z&amp;lt;/TellerID&amp;gt;&amp;lt;FunctionType&amp;gt;IVR&amp;lt;/FunctionType&amp;gt;&amp;lt;ApplicationType&amp;gt;X&amp;lt;/ApplicationType&amp;gt;&amp;lt;TransactionCode&amp;gt;IBL&amp;lt;/TransactionCode&amp;gt;&amp;lt;AccountNumber&amp;gt;${P_AccountNo}&amp;lt;/AccountNumber&amp;gt;&amp;lt;PAN&amp;gt;${P_MemberId}&amp;lt;/PAN&amp;gt;&amp;lt;Data&amp;gt;000000000000${Data1}${Data}&amp;lt;/Data&amp;gt;&amp;lt;/InquireRequest&amp;gt;&lt;/inquire&gt;&lt;/soap:Body&gt;&lt;/soap:Envelope&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">np-api.leaguedata.ca</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/uat/ivr-eapi/v1/IVRService/IVRPort</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/xml</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">client_id</stringProp>
+                <stringProp name="Header.value">1a6f3cfcc34147e69de499c2a2469d97</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">client_secret</stringProp>
+                <stringProp name="Header.value">8F36377F302343ABB89e30c4BE306a67</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="RegionID" elementType="Argument">
+                <stringProp name="Argument.name">RegionID</stringProp>
+                <stringProp name="Argument.value">${__time(,)}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </Arguments>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">int P_RegionID1=${__Random(10001,99999,)};
+
+String P_RegionID= Integer.toString(P_RegionID1);
+
+//String s=Integer.toString(i);
+
+vars.put(&quot;P_RegionID&quot;,P_RegionID);
+
+
+//log.info(&quot;timestamp value is &quot;+P_RegionID);</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">var api=&quot;Search Bill&quot;;
+
+long starttime=prev.getStartTime();
+
+long endtime=prev.getEndTime();
+
+int loadtime=endtime-starttime;
+
+String P_RegionID=vars.get(&quot;P_RegionID&quot;);
+
+vars.put(&quot;P_RegionID&quot;,P_RegionID);
+
+//log.info(&quot;loadtime value is &quot;+loadtime1);
+
+
+if(loadtime&gt;1000)
+{
+ FileWriter fstream = new FileWriter(&quot;IVR.csv&quot;, true);
+ BufferedWriter out = new BufferedWriter(fstream);
+ out.write(P_RegionID);
+ out.write(&quot;,&quot;);
+ out.write(api);
+ out.write(&quot;,&quot;);
+ String loadtime1= Integer.toString(loadtime);
+ out.write(loadtime1);
+ out.write(System.getProperty(&quot;line.separator&quot;));
+ out.close();
+ fstream.close();
+
+}</stringProp>
+          </BeanShellPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+          <intProp name="ActionProcessor.action">1</intProp>
+          <intProp name="ActionProcessor.target">0</intProp>
+          <stringProp name="ActionProcessor.duration">${P_IVRThinkTime}</stringProp>
+        </TestAction>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Delete Bill" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;soap:Envelope xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;soap:Body&gt;&lt;inquire xmlns=&quot;http://www.cgi.com/ivr&quot;&gt;&amp;lt;InquireRequest xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&amp;gt;&amp;lt;RegionID&amp;gt;${P_RegionID}&amp;lt;/RegionID&amp;gt;&amp;lt;CreditUnionNo&amp;gt;0006&amp;lt;/CreditUnionNo&amp;gt;&amp;lt;BranchNo&amp;gt;01&amp;lt;/BranchNo&amp;gt;&amp;lt;TellerNo&amp;gt;900&amp;lt;/TellerNo&amp;gt;&amp;lt;TellerID&amp;gt;Z&amp;lt;/TellerID&amp;gt;&amp;lt;FunctionType&amp;gt;IVR&amp;lt;/FunctionType&amp;gt;&amp;lt;ApplicationType&amp;gt;X&amp;lt;/ApplicationType&amp;gt;&amp;lt;TransactionCode&amp;gt;DBL&amp;lt;/TransactionCode&amp;gt;&amp;lt;AccountNumber&amp;gt;${P_AccountNo}&amp;lt;/AccountNumber&amp;gt;&amp;lt;PAN&amp;gt;${P_MemberId}&amp;lt;/PAN&amp;gt;&amp;lt;Data&amp;gt;000000000000${Data1}${Data}&amp;lt;/Data&amp;gt;&amp;lt;/InquireRequest&amp;gt;&lt;/inquire&gt;&lt;/soap:Body&gt;&lt;/soap:Envelope&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">np-api.leaguedata.ca</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/uat/ivr-eapi/v1/IVRService/IVRPort</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/xml</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">client_id</stringProp>
+                <stringProp name="Header.value">1a6f3cfcc34147e69de499c2a2469d97</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">client_secret</stringProp>
+                <stringProp name="Header.value">8F36377F302343ABB89e30c4BE306a67</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="RegionID" elementType="Argument">
+                <stringProp name="Argument.name">RegionID</stringProp>
+                <stringProp name="Argument.value">${__time(,)}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </Arguments>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">int P_RegionID1=${__Random(10001,99999,)};
+
+String P_RegionID= Integer.toString(P_RegionID1);
+
+//String s=Integer.toString(i);
+
+vars.put(&quot;P_RegionID&quot;,P_RegionID);
+
+
+//log.info(&quot;timestamp value is &quot;+P_RegionID);</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">var api=&quot;Delete Bill&quot;;
+
+long starttime=prev.getStartTime();
+
+long endtime=prev.getEndTime();
+
+int loadtime=endtime-starttime;
+
+String P_RegionID=vars.get(&quot;P_RegionID&quot;);
+
+vars.put(&quot;P_RegionID&quot;,P_RegionID);
+
+log.info(&quot;loadtime value is &quot;+loadtime);
+
+
+if(loadtime&gt;1000)
+{
+ FileWriter fstream = new FileWriter(&quot;IVR.csv&quot;, true);
+ BufferedWriter out = new BufferedWriter(fstream);
+ out.write(P_RegionID);
+ out.write(&quot;,&quot;);
+ out.write(api);
+  out.write(&quot;,&quot;);
+  String loadtime1= Integer.toString(loadtime);
+ out.write(loadtime1);
+ out.write(System.getProperty(&quot;line.separator&quot;));
+ out.close();
+ fstream.close();
+
+}</stringProp>
+          </BeanShellPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+          <intProp name="ActionProcessor.action">1</intProp>
+          <intProp name="ActionProcessor.target">0</intProp>
+          <stringProp name="ActionProcessor.duration">${P_IVRThinkTime}</stringProp>
+        </TestAction>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Account Activity_Last10Transactions" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;soap:Envelope xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;soap:Body&gt;&lt;inquire xmlns=&quot;http://www.cgi.com/ivr&quot;&gt;&amp;lt;InquireRequest xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&amp;gt;&amp;lt;RegionID&amp;gt;${P_RegionID}&amp;lt;/RegionID&amp;gt;&amp;lt;CreditUnionNo&amp;gt;0006&amp;lt;/CreditUnionNo&amp;gt;&amp;lt;BranchNo&amp;gt;01&amp;lt;/BranchNo&amp;gt;&amp;lt;TellerNo&amp;gt;900&amp;lt;/TellerNo&amp;gt;&amp;lt;TellerID&amp;gt;Z&amp;lt;/TellerID&amp;gt;&amp;lt;FunctionType&amp;gt;IVR&amp;lt;/FunctionType&amp;gt;&amp;lt;ApplicationType&amp;gt;X&amp;lt;/ApplicationType&amp;gt;&amp;lt;TransactionCode&amp;gt;ITL&amp;lt;/TransactionCode&amp;gt;&amp;lt;AccountNumber&amp;gt;${P_AccountNo}&amp;lt;/AccountNumber&amp;gt;&amp;lt;PAN&amp;gt;0000000000${P_MemberId}&amp;lt;/PAN&amp;gt;&amp;lt;Data&amp;gt;000000000000000&amp;lt;/Data&amp;gt;&amp;lt;/InquireRequest&amp;gt;&lt;/inquire&gt;&lt;/soap:Body&gt;&lt;/soap:Envelope&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">np-api.leaguedata.ca</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">uat/ivr-eapi/v1/IVRService/IVRPort</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/xml</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">client_id</stringProp>
+                <stringProp name="Header.value">1a6f3cfcc34147e69de499c2a2469d97</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">client_secret</stringProp>
+                <stringProp name="Header.value">8F36377F302343ABB89e30c4BE306a67</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="RegionID" elementType="Argument">
+                <stringProp name="Argument.name">RegionID</stringProp>
+                <stringProp name="Argument.value">${__time(,)}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </Arguments>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">int P_RegionID1=${__Random(10001,99999,)};
+
+String P_RegionID= Integer.toString(P_RegionID1);
+
+//String s=Integer.toString(i);
+
+vars.put(&quot;P_RegionID&quot;,P_RegionID);
+
+
+//log.info(&quot;timestamp value is &quot;+P_RegionID);</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">var api=&quot;Account Activity_Last10Transactions&quot;;
+
+long starttime=prev.getStartTime();
+
+long endtime=prev.getEndTime();
+
+int loadtime=endtime-starttime;
+
+String P_RegionID=vars.get(&quot;P_RegionID&quot;);
+
+vars.put(&quot;P_RegionID&quot;,P_RegionID);
+
+log.info(&quot;loadtime value is &quot;+loadtime);
+
+
+if(loadtime&gt;1000)
+{
+ FileWriter fstream = new FileWriter(&quot;IVR.csv&quot;, true);
+ BufferedWriter out = new BufferedWriter(fstream);
+ out.write(P_RegionID);
+ out.write(&quot;,&quot;);
+ out.write(api);
+ out.write(&quot;,&quot;);
+ String loadtime1= Integer.toString(loadtime);
+ out.write(loadtime1);
+ out.write(System.getProperty(&quot;line.separator&quot;));
+ out.close();
+ fstream.close();
+
+}</stringProp>
+          </BeanShellPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+          <intProp name="ActionProcessor.action">1</intProp>
+          <intProp name="ActionProcessor.target">0</intProp>
+          <stringProp name="ActionProcessor.duration">${P_IVRThinkTime}</stringProp>
+        </TestAction>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Balance enquiry" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;soap:Envelope xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;soap:Body&gt;&lt;inquire xmlns=&quot;http://www.cgi.com/ivr&quot;&gt;&amp;lt;InquireRequest xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&amp;gt;&amp;lt;RegionID&amp;gt;${P_RegionID}&amp;lt;/RegionID&amp;gt;&amp;lt;CreditUnionNo&amp;gt;0006&amp;lt;/CreditUnionNo&amp;gt;&amp;lt;BranchNo&amp;gt;01&amp;lt;/BranchNo&amp;gt;&amp;lt;TellerNo&amp;gt;900&amp;lt;/TellerNo&amp;gt;&amp;lt;TellerID&amp;gt;Z&amp;lt;/TellerID&amp;gt;&amp;lt;FunctionType&amp;gt;IVR&amp;lt;/FunctionType&amp;gt;&amp;lt;ApplicationType&amp;gt;X&amp;lt;/ApplicationType&amp;gt;&amp;lt;TransactionCode&amp;gt;IBA&amp;lt;/TransactionCode&amp;gt;&amp;lt;AccountNumber&amp;gt;${P_AccountNo}&amp;lt;/AccountNumber&amp;gt;&amp;lt;PAN&amp;gt;${P_MemberId}&amp;lt;/PAN&amp;gt;&amp;lt;Data&amp;gt;&amp;lt;/Data&amp;gt;&amp;lt;/InquireRequest&amp;gt;&lt;/inquire&gt;&lt;/soap:Body&gt;&lt;/soap:Envelope&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">np-api.leaguedata.ca</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/uat/ivr-eapi/v1/IVRService/IVRPort</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/xml</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">client_id</stringProp>
+                <stringProp name="Header.value">1a6f3cfcc34147e69de499c2a2469d97</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">client_secret</stringProp>
+                <stringProp name="Header.value">8F36377F302343ABB89e30c4BE306a67</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="RegionID" elementType="Argument">
+                <stringProp name="Argument.name">RegionID</stringProp>
+                <stringProp name="Argument.value">${__time(,)}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </Arguments>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">int P_RegionID1=${__Random(10001,99999,)};
+
+String P_RegionID= Integer.toString(P_RegionID1);
+
+//String s=Integer.toString(i);
+
+vars.put(&quot;P_RegionID&quot;,P_RegionID);
+
+
+//log.info(&quot;timestamp value is &quot;+P_RegionID);</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">var api=&quot;Balance enquiry&quot;;
+
+long starttime=prev.getStartTime();
+
+long endtime=prev.getEndTime();
+
+int loadtime=endtime-starttime;
+
+String P_RegionID=vars.get(&quot;P_RegionID&quot;);
+
+vars.put(&quot;P_RegionID&quot;,P_RegionID);
+
+log.info(&quot;loadtime value is &quot;+loadtime);
+
+
+if(loadtime&gt;1000)
+{
+ FileWriter fstream = new FileWriter(&quot;IVR.csv&quot;, true);
+ BufferedWriter out = new BufferedWriter(fstream);
+ out.write(P_RegionID);
+ out.write(&quot;,&quot;);
+ out.write(api);
+  out.write(&quot;,&quot;);
+ String loadtime1= Integer.toString(loadtime);
+ out.write(loadtime1);
+ out.write(System.getProperty(&quot;line.separator&quot;));
+ out.close();
+ fstream.close();
+
+}</stringProp>
+          </BeanShellPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+          <intProp name="ActionProcessor.action">1</intProp>
+          <intProp name="ActionProcessor.target">0</intProp>
+          <stringProp name="ActionProcessor.duration">${P_IVRThinkTime}</stringProp>
+        </TestAction>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Transfer Transaction" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;soap:Envelope xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;soap:Body&gt;&lt;inquire xmlns=&quot;http://www.cgi.com/ivr&quot;&gt;&amp;lt;InquireRequest xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&amp;gt;&amp;lt;RegionID&amp;gt;${P_RegionID}&amp;lt;/RegionID&amp;gt;&amp;lt;CreditUnionNo&amp;gt;0002&amp;lt;/CreditUnionNo&amp;gt;&amp;lt;BranchNo&amp;gt;01&amp;lt;/BranchNo&amp;gt;&amp;lt;TellerNo&amp;gt;900&amp;lt;/TellerNo&amp;gt;&amp;lt;TellerID&amp;gt;Z&amp;lt;/TellerID&amp;gt;&amp;lt;FunctionType&amp;gt;IVR&amp;lt;/FunctionType&amp;gt;&amp;lt;ApplicationType&amp;gt;X&amp;lt;/ApplicationType&amp;gt;&amp;lt;TransactionCode&amp;gt;ITF&amp;lt;/TransactionCode&amp;gt;&amp;lt;AccountNumber&amp;gt;${P_AccountNo}&amp;lt;/AccountNumber&amp;gt;&amp;lt;PAN&amp;gt;0000000000${P_MemberId}&amp;lt;/PAN&amp;gt;&amp;lt;Data&amp;gt;00000004440000000000000000000000000000N3130002${P_AccountNo}2130002${P_toAccount}N  0000000000000000               0000000000000000&amp;lt;/Data&amp;gt;&amp;lt;/InquireRequest&amp;gt;&lt;/inquire&gt;&lt;/soap:Body&gt;&lt;/soap:Envelope&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">np-api.leaguedata.ca</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">uat/ivr-eapi/v1/IVRService/IVRPort</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/xml</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">client_id</stringProp>
+                <stringProp name="Header.value">1a6f3cfcc34147e69de499c2a2469d97</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">client_secret</stringProp>
+                <stringProp name="Header.value">8F36377F302343ABB89e30c4BE306a67</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="RegionID" elementType="Argument">
+                <stringProp name="Argument.name">RegionID</stringProp>
+                <stringProp name="Argument.value">${__time(,)}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </Arguments>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">int P_RegionID1=${__Random(10001,99999,)};
+
+String P_RegionID= Integer.toString(P_RegionID1);
+
+//String s=Integer.toString(i);
+
+vars.put(&quot;P_RegionID&quot;,P_RegionID);
+
+
+//log.info(&quot;timestamp value is &quot;+P_RegionID);</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">var api=&quot;Transfer Transaction&quot;;
+
+long starttime=prev.getStartTime();
+
+long endtime=prev.getEndTime();
+
+int loadtime=endtime-starttime;
+
+String P_RegionID=vars.get(&quot;P_RegionID&quot;);
+
+vars.put(&quot;P_RegionID&quot;,P_RegionID);
+
+log.info(&quot;loadtime value is &quot;+loadtime);
+
+
+if(loadtime&gt;1000)
+{
+ FileWriter fstream = new FileWriter(&quot;IVR.csv&quot;, true);
+ BufferedWriter out = new BufferedWriter(fstream);
+ out.write(P_RegionID);
+ out.write(&quot;,&quot;);
+ out.write(api);
+ out.write(&quot;,&quot;);
+ String loadtime1= Integer.toString(loadtime);
+ out.write(loadtime1);
+ out.write(System.getProperty(&quot;line.separator&quot;));
+ out.close();
+ fstream.close();
+
+}</stringProp>
+          </BeanShellPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="false">
+          <intProp name="ActionProcessor.action">1</intProp>
+          <intProp name="ActionProcessor.target">0</intProp>
+          <stringProp name="ActionProcessor.duration">${P_ThinkTime}</stringProp>
+        </TestAction>
+        <hashTree/>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="false">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename">C:\PerformanceTesting\Results\40%_IVR_comparison_postfix_03072023.jtl</stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename">C:\PerformanceTesting\Results\Cycle3\IVR_40%_comparison_postfix_postfix_03072023.jtl</stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ProxyControl guiclass="ProxyControlGui" testclass="ProxyControl" testname="HTTP(S) Test Script Recorder" enabled="false">
+        <stringProp name="ProxyControlGui.port">8888</stringProp>
+        <collectionProp name="ProxyControlGui.exclude_list">
+          <stringProp name="805311387">windowsupdate\.microsoft\.com.*</stringProp>
+          <stringProp name="1179605444">(?i).*\.(bmp|css|js|gif|ico|jpe?g|png|swf|eot|otf|ttf|mp4|woff|woff2)</stringProp>
+          <stringProp name="110431874">.*msg\.yahoo\.com.*</stringProp>
+          <stringProp name="-88591710">www\.download\.windowsupdate\.com.*</stringProp>
+          <stringProp name="1323576868">toolbarqueries\.google\..*</stringProp>
+          <stringProp name="1739087931">http?://self-repair\.mozilla\.org.*</stringProp>
+          <stringProp name="1206954446">tiles.*\.mozilla\.com.*</stringProp>
+          <stringProp name="-1424663473">.*detectportal\.firefox\.com.*</stringProp>
+          <stringProp name="1779943373">us\.update\.toolbar\.yahoo\.com.*</stringProp>
+          <stringProp name="-190610036">.*\.google\.com.*/safebrowsing/.*</stringProp>
+          <stringProp name="-1899150273">api\.bing\.com.*</stringProp>
+          <stringProp name="-958112859">toolbar\.google\.com.*</stringProp>
+          <stringProp name="-192420923">.*yimg\.com.*</stringProp>
+          <stringProp name="-576820688">toolbar\.msn\.com.*</stringProp>
+          <stringProp name="305776760">(?i).*\.(bmp|css|js|gif|ico|jpe?g|png|swf|eot|otf|ttf|mp4|woff|woff2)[\?;].*</stringProp>
+          <stringProp name="-1435252351">toolbar\.avg\.com/.*</stringProp>
+          <stringProp name="2118375536">www\.google-analytics\.com.*</stringProp>
+          <stringProp name="-1279148329">pgq\.yahoo\.com.*</stringProp>
+          <stringProp name="1815174768">safebrowsing.*\.google\.com.*</stringProp>
+          <stringProp name="-1314416226">sqm\.microsoft\.com.*</stringProp>
+          <stringProp name="587935979">g\.msn.*</stringProp>
+          <stringProp name="1629558731">clients.*\.google.*</stringProp>
+          <stringProp name="11072252">.*toolbar\.yahoo\.com.*</stringProp>
+          <stringProp name="1726898318">geo\.yahoo\.com.*</stringProp>
+        </collectionProp>
+        <collectionProp name="ProxyControlGui.include_list"/>
+        <boolProp name="ProxyControlGui.capture_http_headers">true</boolProp>
+        <intProp name="ProxyControlGui.grouping_mode">4</intProp>
+        <boolProp name="ProxyControlGui.add_assertion">false</boolProp>
+        <stringProp name="ProxyControlGui.sampler_type_name"></stringProp>
+        <boolProp name="ProxyControlGui.sampler_redirect_automatically">false</boolProp>
+        <boolProp name="ProxyControlGui.sampler_follow_redirects">true</boolProp>
+        <boolProp name="ProxyControlGui.use_keepalive">true</boolProp>
+        <boolProp name="ProxyControlGui.sampler_download_images">false</boolProp>
+        <boolProp name="ProxyControlGui.regex_match">true</boolProp>
+        <stringProp name="ProxyControlGui.content_type_include"></stringProp>
+        <stringProp name="ProxyControlGui.content_type_exclude"></stringProp>
+        <boolProp name="ProxyControlGui.notify_child_sl_filtered">false</boolProp>
+        <stringProp name="ProxyControlGui.proxy_prefix_http_sampler_name"></stringProp>
+        <intProp name="ProxyControlGui.proxy_http_sampler_naming_mode">1</intProp>
+        <stringProp name="ProxyControlGui.proxy_pause_http_sampler"></stringProp>
+        <boolProp name="ProxyControlGui.detect_graphql_request">true</boolProp>
+        <stringProp name="ProxyControlGui.default_encoding">UTF-8</stringProp>
+      </ProxyControl>
+      <hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>true</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>true</responseData>
+              <samplerData>true</samplerData>
+              <xml>true</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>true</responseHeaders>
+              <requestHeaders>true</requestHeaders>
+              <responseDataOnError>true</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <url>true</url>
+              <fileName>true</fileName>
+              <hostname>true</hostname>
+              <threadCounts>true</threadCounts>
+              <sampleCount>true</sampleCount>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename">recording.xml</stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

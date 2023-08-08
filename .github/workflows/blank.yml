@@ -24,11 +24,8 @@ jobs:
           wget https://jmeter-plugins.org/get/ -O ./apache-jmeter-5.5/lib/ext/jmeter-plugins-manager.jar
           java -cp ./apache-jmeter-5.5/lib/ext/jmeter-plugins-manager.jar org.jmeterplugins.repository.PluginManagerCMDInstaller
 
-      - name: Install Ultimate Thread Group plugin
-        run: ./apache-jmeter-5.5/bin/PluginsManagerCMD.sh install jpgc-casutg
-
       - name: Run JMeter tests
-        run: ./apache-jmeter-5.5/bin/jmeter -n -t IVR_StressTest_v2.jmx -l results.jtl
+        run: ./apache-jmeter-5.5/bin/jmeter -n -t IVR_Github_stresstesting.jmx -l results.jtl
 
       - name: Generate Report
         run: ./apache-jmeter-5.5/bin/jmeter -g results.jtl -o report

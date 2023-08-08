@@ -2,7 +2,7 @@ name: Jmeter Test Workflow
 on: [push]
 jobs:
   jmeter_tests:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout
@@ -16,20 +16,23 @@ jobs:
 
       - name: Download and Extract JMeter
         run: |
-          wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.5.tgz
-          tar -xzf apache-jmeter-5.5.tgz
+          Invoke-WebRequest -Uri https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.5.zip -OutFile apache-jmeter-5.5.zip
+          Expand-Archive -Path apache-jmeter-5.5.zip -DestinationPath .
 
       - name: Download and Install JMeter Plugins Manager
         run: |
-          wget https://jmeter-plugins.org/get/ -O ./apache-jmeter-5.5/lib/ext/jmeter-plugins-manager.jar
-          java -cp ./apache-jmeter-5.5/lib/ext/jmeter-plugins-manager.jar org.jmeterplugins.repository.PluginManagerCMDInstaller
+          Invoke-WebRequest -Uri https://jmeter-plugins.org/get/ -OutFile .\apache-jmeter-5.5\lib\ext\jmeter-plugins-manager.jar
+          java -cp .\apache-jmeter-5.5\lib\ext\jmeter-plugins-manager.jar org.jmeterplugins.repository.PluginManagerCMDInstaller
+
+      - name: Install Ultimate Thread Group plugin
+        run: .\apache-jmeter-5.5\bin\PluginsManagerCMD.bat install jpgc-casutg
 
       - name: Run JMeter tests
-        run: ./apache-jmeter-5.5/bin/jmeter -n -t IVR_Github_stresstesting.jmx -l results.jtl
+        run: .\apache-jmeter-5.5\bin\jmeter.bat -n -t IVR_Github_stresstesting.jmx -l results.jtl
 
       - name: Generate Report
-        run: ./apache-jmeter-5.5/bin/jmeter -g results.jtl -o report
+        run: .\apache-jmeter-5.5\bin\jmeter.bat -g results.jtl -o report
 
       - name: Print high response time and errors
         run: |
-          awk 'BEGIN {FS=","} \$8>2000 || \$4~/404|400|408|500/' results.jtl
+          powershell -Command "& {Get-Content results.jtl | Where-Object {$_ -match ',\d{4,},|,4\d{2},|,500,'}}"

@@ -27,5 +27,9 @@ jobs:
       - name: Run JMeter tests
         run: .\apache-jmeter-5.5\bin\jmeter.bat -n -t ForgeAPI_v3.jmx -l Forgeresults.jtl
 
+      - name: Print JTL File
+        run: |
+          cat .\apache-jmeter-5.5\Forgeresults.jtl
+
       - name: Generate Report
         run: .\apache-jmeter-5.5\bin\jmeter.bat -g Forgeresults.jtl -o ./report

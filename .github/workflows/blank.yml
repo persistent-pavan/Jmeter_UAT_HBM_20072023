@@ -1,0 +1,30 @@
+name: Jmeter Test Workflow
+on: [push]
+jobs:
+  jmeter_tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+
+      - name: Download and Extract JMeter
+        run: |
+          wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.5.tgz
+          tar -xzf apache-jmeter-5.5.tgz
+
+      - name: Run JMeter tests
+        run: ./apache-jmeter-5.5/bin/jmeter -n -t ./path_to_your_script/your_test_script.jmx -l results.jtl
+
+      - name: Generate Report
+        run: ./apache-jmeter-5.5/bin/jmeter -g results.jtl -o report
+
+      - name: Print high response time and errors
+        run: |
+          awk 'BEGIN {FS=","} \$8>2000 || \$4~/404|400|408|500/' results.jtl

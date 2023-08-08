@@ -29,7 +29,7 @@ jobs:
 
       - name: Print JTL File
         run: |
-          cat .\apache-jmeter-5.5\Forgeresults.jtl
+          cat .\apache-jmeter-5.5\bin\Forgeresults.jtl
 
       - name: Generate Report
         run: .\apache-jmeter-5.5\bin\jmeter.bat -g Forgeresults.jtl -o ./report

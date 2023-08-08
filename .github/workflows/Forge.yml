@@ -28,4 +28,4 @@ jobs:
         run: .\apache-jmeter-5.5\bin\jmeter.bat -n -t ForgeAPI_v3.jmx -l Forgeresults.jtl
 
       - name: Generate Report
-        run: .\apache-jmeter-5.5\bin\jmeter.bat -g Forgeresults.jtl -o ./Jmeter_UAT_HBM_20072023/.github/workflows/report
+        run: .\apache-jmeter-5.5\bin\jmeter.bat -g Forgeresults.jtl -o ./report

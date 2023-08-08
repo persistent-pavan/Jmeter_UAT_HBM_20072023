@@ -25,11 +25,11 @@ jobs:
           java -cp .\apache-jmeter-5.5\lib\ext\jmeter-plugins-manager.jar org.jmeterplugins.repository.PluginManagerCMDInstaller
 
       - name: Run JMeter tests
-        run: .\apache-jmeter-5.5\bin\jmeter.bat -n -t ForgeAPI_v3.jmx -l Forgeresults.jtl
+        run: .\apache-jmeter-5.5\bin\jmeter.bat -n -t ForgeAPI_v3.jmx -l Forgeresults_1.jtl
 
       - name: Print JTL File
         run: |
-          cat .\apache-jmeter-5.5\bin\Forgeresults.jtl
+          cat Forgeresults.jtl
 
       - name: Generate Report
         run: .\apache-jmeter-5.5\bin\jmeter.bat -g Forgeresults.jtl -o ./report

@@ -25,11 +25,8 @@ jobs:
           java -cp .\apache-jmeter-5.5\lib\ext\jmeter-plugins-manager.jar org.jmeterplugins.repository.PluginManagerCMDInstaller
 
       - name: Run JMeter tests
-        run: .\apache-jmeter-5.5\bin\jmeter.bat -n -t IVR_Github_stresstesting.jmx -l results.jtl
+        run: .\apache-jmeter-5.5\bin\jmeter.bat -n -t IVR_Github_stresstesting.jmx -l Forgeresults.jtl
 
       - name: Generate Report
-        run: .\apache-jmeter-5.5\bin\jmeter.bat -g results.jtl -o report
-
-      - name: Print high response time and errors
-        run: |
-          powershell -Command "& {Get-Content results.jtl | Where-Object {$_ -match ',\d{4,},|,4\d{2},|,500,'}}"
+        run: .\apache-jmeter-5.5\bin\jmeter.bat -g Forgeresults.jtl -o ./report
+        

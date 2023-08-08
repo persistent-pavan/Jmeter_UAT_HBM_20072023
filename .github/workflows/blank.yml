@@ -20,7 +20,7 @@ jobs:
           tar -xzf apache-jmeter-5.5.tgz
 
       - name: Run JMeter tests
-        run: ./apache-jmeter-5.5/bin/jmeter -n -t IVR_StressTest_v2.jmx -l results.jtl
+        run: ./apache-jmeter-5.5/bin/jmeter -n -t ./Jmeter_UAT_HBM_20072023/IVR_StressTest_v2.jmx -l results.jtl
 
       - name: Generate Report
         run: ./apache-jmeter-5.5/bin/jmeter -g results.jtl -o report

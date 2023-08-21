@@ -30,7 +30,3 @@ jobs:
       - name: Print JTL File
         run: |
           cat Teller_CurrentProjection_v4.jtl
-
-    //  - name: Generate Report
-    //    run: .\apache-jmeter-5.5\bin\jmeter.bat -g Forgeresults.jtl -o ./report
-        

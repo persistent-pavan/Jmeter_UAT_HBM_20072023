@@ -28,5 +28,3 @@ jobs:
       - name: Print JTL File
         run: |
           cat Teller_Till_results_1.jtl
-     // - name: Generate Report
-       // run: .\apache-jmeter-5.5\bin\jmeter.bat -g Teller_Till_results_1.jtl -o ./report
